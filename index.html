@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JS RegEx Demo</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="Quoted Printable Email to Plain HTML Converter">
+    <meta name="description" content="Convert Email to Plain HTML">
+    <title>Quoted Printable Email to Plain HTML Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
       <h1 class="text-center">Email to HTML Converter</h1>
       <form>
-		<div class="form-group">
+        <div class="form-group">
           <textarea class="form-control" id="mailTxt" rows="10" placeholder="Simply copy the html portion of an email using the Show Original option. Paste it here and obtain the clean version to edit/remix"></textarea>
-		</div>
+	</div>
         <button type="button" class="btn btn-success btn-block" id="btnGo"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Convert</button>
         &nbsp;
-		<div class="form-group" style="display:none;" id="result">
+	<div class="form-group" style="display:none;" id="result">
           <textarea class="form-control" id="resultTxt" rows="10"></textarea>
-		</div>        
+	</div>        
       </form>
     </div>
     <script>
-	  document.getElementById("btnGo").onclick = function(){
+      document.getElementById("btnGo").onclick = function(){
         var txt = document.getElementById("mailTxt").value;
         var res = txt.replace(/=\n/g, "")
                      .replace(/\s*\</g, "<")
-					 .replace(/=3D/g, "=")
-					 .replace(/=2E/g, ".")
-					 .replace(/=\d\w?\d?/g, "")					 
-					 .replace(/\>/g, ">\n")
-					 .replace(/^\s*\n/gm, "\b");
+		     .replace(/=3D/g, "=")
+		     .replace(/=2E/g, ".")
+		     .replace(/=\d\w?\d?/g, "")					 
+                     .replace(/\>/g, ">\n")
+                     .replace(/^\s*\n/gm, "\b");
 
-		var result = document.getElementById("resultTxt");
-		result.value = res;
-		var resDiv = document.getElementById("result").style.display = "block";
-		result.focus();
-		result.select();
-	  };
+	var result = document.getElementById("resultTxt");
+	result.value = res;
+	var resDiv = document.getElementById("result").style.display = "block";
+	result.focus();
+	result.select();
+      };
     </script>
   </body>
 </html>
